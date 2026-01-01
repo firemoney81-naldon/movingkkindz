@@ -1,23 +1,498 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+  <style>
+    /* Reset and Base Styles */
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      background: #f0f4f8; /* Soft light background */
+      color: #333;
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+    header, section, footer {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 30px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e0e6ec;
+    }
+    h1, h2, h3 {
+      color: #004aad; /* Brand primary color */
+      font-weight: 700;
+      line-height: 1.4;
+      margin-top: 0;
+    }
+    h1 { font-size: 2.5em; text-align: center; margin-bottom: 0.5em; }
+    h2 { font-size: 2em; border-bottom: 2px solid #e0e6ec; padding-bottom: 10px; margin-top: 30px; }
+    h3 { font-size: 1.5em; color: #0070f3; margin-top: 20px; }
+    ul, ol { padding-left: 25px; margin-bottom: 20px; }
+    li { margin-bottom: 10px; }
+    strong { color: #004aad; }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      font-size: 0.95em;
+    }
+    th, td {
+      border: 1px solid #dde7f1;
+      padding: 15px;
+      text-align: left;
+    }
+    th {
+      background: #004aad;
+      color: #fff;
+      font-weight: 700;
+      text-align: center;
+    }
+    td:first-child { font-weight: 600; }
+
+    /* Call to Action Buttons */
+    .btn-cta {
+      display: inline-block;
+      padding: 15px 30px;
+      background: #0070f3;
+      color: #fff;
+      font-weight: 700;
+      border-radius: 30px;
+      box-shadow: 0 4px 12px rgba(0, 112, 243, 0.3);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      text-align: center;
+      margin-top: 20px;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      font-size: 1.1em;
+    }
+    .btn-cta:hover {
+      background: #005bb5;
+      transform: translateY(-2px);
+    }
+    .btn-cta-group { text-align: center; margin-top: 30px; }
+
+    /* Navigation */
+    nav {
+      max-width: 1000px;
+      margin: 20px auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      padding: 10px 20px;
+    }
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    nav li { margin: 0; }
+    nav a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 10px 15px;
+      border-radius: 6px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    nav a:hover { background-color: #f0f4f8; color: #004aad; text-decoration: none; }
+
+    /* Forms and Inputs */
+    form {
+      background: #fafafa;
+      padding: 25px;
+      border-radius: 8px;
+      border: 1px solid #e0e6ec;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #555;
+    }
+    input[type="text"], input[type="tel"], textarea, select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 1em;
+      transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus, input[type="tel"]:focus, textarea:focus, select:focus {
+      border-color: #0070f3;
+      outline: none;
+    }
+
+    /* Additional content styles */
+    .highlight-box {
+      background: #f4f8ff;
+      border-left: 5px solid #0070f3;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-style: italic;
+    }
+    .faq-item { margin-bottom: 25px; }
+    .faq-item h3 { color: #333; font-weight: 600; cursor: pointer; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+    .faq-item p { margin-top: 10px; color: #555; }
+    .graph-placeholder {
+      width: 100%;
+      height: 300px;
+      background: linear-gradient(135deg, #f0f4f8, #e0e6ec);
+      border-radius: 8px;
+      border: 1px dashed #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      font-weight: 500;
+      margin: 20px 0;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      body { font-size: 15px; }
+      header, section, footer { padding: 20px; margin: 10px auto; }
+      h1 { font-size: 2em; }
+      h2 { font-size: 1.8em; }
+      nav ul { flex-direction: column; gap: 5px; }
+      nav a { width: 100%; text-align: center; }
+      .btn-cta { width: 100%; padding: 15px 0; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.8em; }
+      h2 { font-size: 1.5em; }
+    }
+  </style>
+
+  <!-- Schema.org LocalBusiness Markup (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MovingCompany",
+    "name": "포장보관이사 전문 서비스",
+    "image": "https://도메인/logo.png",
+    "url": "https://도메인/보관이사",
+    "telephone": "1660-1234",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "전국 주요 도시에 지점 운영",
+      "addressLocality": "대한민국",
+      "addressRegion": "KR",
+      "postalCode": "00000",
+      "addressCountry": "KR"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "서울시" },
+      { "@type": "City", "name": "부산시" },
+      { "@type": "City", "name": "인천시" },
+      { "@type": "City", "name": "대구시" },
+      { "@type": "City", "name": "대전시" }
+    ],
+    "priceRange": "₩₩₩",
+    "description": "전국 포장보관이사 전문업체 비교 서비스. 이사짐 보관, 장기 보관이사, 포장 대행 서비스 제공."
+  }
+  </script>
+</head>
+
+<body>
+  <header>
+    <h1>포장보관이사 전문 서비스</h1>
+    <p>보관부터 운송까지, 2026년 최적의 이사짐 보관 솔루션으로 안심하고 맡기세요.</p>
+    <div class="btn-cta-group">
+      <a href="#quote-form" class="btn-cta">실시간 보관이사 견적 받기</a>
+    </div>
+  </header>
+
+  <nav aria-label="페이지 내 이동">
+    <ul>
+      <li><a href="#what-is-service">서비스 소개</a></li>
+      <li><a href="#storage-process">이사 절차 안내</a></li>
+      <li><a href="#cost-guide">보관 비용 가이드</a></li>
+      <li><a href="#storage-types">보관 방법 비교</a></li>
+      <li><a href="#checklist-faq">필수 체크리스트 & FAQ</a></li>
+      <li><a href="#partner-recommendation">업체 추천</a></li>
+      <li><a href="#quote-form">견적 문의</a></li>
+    </ul>
+  </nav>
+
+  <!-- SECTION 1: 서비스 소개 -->
+  <section id="what-is-service">
+    <span id="what-is-service-anchor" class="anchor"></span>
+    <h2>포장보관이사, 정확히 무엇인가요?</h2>
+    <p>포장보관이사 서비스는 고객님의 이삿짐을 포장하여 안전하게 보관한 뒤, 원하시는 날짜에 새로운 주소로 다시 운송 및 정리해 드리는 종합 서비스입니다. 일반적인 포장이사와 달리, 이삿짐을 일시적으로 보관해야 하는 경우에 특화된 서비스입니다.</p>
+    <p>이 서비스는 다음과 같은 상황에서 특히 유용합니다:</p>
+    <ul>
+      <li><strong>신축 아파트나 빌라 입주 지연:</strong> 새로 입주할 주택의 공사나 인테리어 일정이 늦어져 기존 집에서 이사한 후 잠시 머물 곳이 없을 때.</li>
+      <li><strong>인테리어 리모델링 기간:</strong> 집 전체를 수리할 때 짐을 비워야 하는 경우.</li>
+      <li><strong>해외 발령 또는 장기 출장:</strong> 일정 기간 한국을 떠나게 되면서 짐을 안전하게 보관해야 할 때.</li>
+      <li><strong>이사 날짜 불일치:</strong> 기존 집의 이사 날짜와 새 집의 입주 날짜가 맞지 않아 짐을 임시로 보관해야 할 때.</li>
+    </ul>
+    <p class="highlight-box"><strong>중요:</strong> 2026년 기준, 포장보관이사는 단순히 짐을 맡기는 '보관이사'를 넘어, 전문적인 포장 기술과 체계적인 재고 관리 시스템을 통해 짐의 상태를 최상으로 유지하는 '포장보관이사' 형태로 발전했습니다.</p>
+  </section>
+
+  <!-- SECTION 2: 이사 절차 안내 (Process) -->
+  <section id="storage-process">
+    <span id="storage-process-anchor" class="anchor"></span>
+    <h2>포장보관이사 4단계 완벽 절차 (2026년 버전)</h2>
+    <p>포장보관이사는 일반 이사와 다르게 짐의 장기 보관을 전제로 하므로, 포장 방식과 보관 환경이 매우 중요합니다. 다음은 전문 업체의 표준 절차입니다.</p>
+
+    <h3>1단계: 방문 견적 및 계약 (정확한 짐 파악)</h3>
+    <p>가장 중요한 단계입니다. 전문 컨설턴트가 직접 방문하여 짐의 양을 정확하게 측정하고, 보관 기간과 필요한 특수 포장재를 파악합니다. 이 단계에서 고객님은 보관 환경(컨테이너 vs. 창고)을 선택하고, 보관이사 비용을 최종 확정하게 됩니다. 계약서에는 보상 범위와 보관 기간이 명확히 명시되어야 합니다.</p>
+
+    <h3>2단계: 전문 포장 (보관 전용 포장 기술)</h3>
+    <p>일반 포장이사와는 차별화된 보관 전용 포장 기술이 적용됩니다. 장기간 보관 시 발생할 수 있는 습기, 먼지, 해충으로부터 짐을 보호하기 위해 특수 비닐, 방습제, 덧대기 포장재 등을 사용합니다. 특히 고가 가구, 가전제품, 의류는 곰팡이와 변색 방지를 위해 더욱 세심한 포장이 이루어집니다.</p>
+
+    <h3>3단계: 안전 보관 (보관 환경 선택)</h3>
+    <p>포장된 짐은 약속된 보관 장소로 운송됩니다. 보관 환경은 크게 <strong>컨테이너 보관</strong>과 <strong>일반 창고 보관</strong>으로 나뉩니다. 컨테이너 보관은 비교적 저렴하지만 외부 환경의 영향을 받을 수 있습니다. 일반 창고 보관은 항온/항습 시설이 갖춰져 있어 고가품이나 민감한 짐을 보관하는 데 적합합니다.</p>
+
+    <h3>4단계: 재운송 및 정리 (새로운 시작)</h3>
+    <p>보관 기간 종료 후, 고객님이 지정한 날짜에 맞춰 짐을 새로운 집으로 운송합니다. 이때 운송된 짐은 기존 포장이사 서비스와 동일하게 배치 및 정리됩니다. 보관 기간 동안 짐의 상태가 손상되지 않도록 보관 관리의 품질을 보증하는 것이 중요합니다.</p>
+
+    <div class="btn-cta-group">
+      <a href="#quote-form" class="btn-cta">포장보관이사 전문가와 상담하기</a>
+    </div>
+  </section>
+
+  <!-- SECTION 3: 보관 방법 비교 -->
+  <section id="storage-types">
+    <span id="storage-types-anchor" class="anchor"></span>
+    <h2>보관이사 방법별 비교 분석 (컨테이너 vs. 일반 창고)</h2>
+    <p>보관이사 시 가장 먼저 결정해야 하는 부분은 짐을 보관할 장소의 형태입니다. 각 방법의 장단점을 비교하여 고객님의 상황에 맞는 최적의 보관 방법을 선택하십시오.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>컨테이너 보관 (야외 보관)</th>
+          <th>일반 창고 보관 (실내 보관)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>보관 장소</strong></td>
+          <td>야외 보관소에 설치된 대형 컨테이너</td>
+          <td>실내 창고 건물 내부에 보관</td>
+        </tr>
+        <tr>
+          <td><strong>환경 제어</strong></td>
+          <td>항온/항습 시설 없음. 외부 기온 및 습도 변화에 민감.</td>
+          <td>항온/항습 시설 완비 (온도 10-25°C, 습도 40-60% 유지).</td>
+        </tr>
+        <tr>
+          <td><strong>보관 비용</strong></td>
+          <td>상대적으로 저렴함 (월 10~20만 원대).</td>
+          <td>상대적으로 비쌈 (월 20~40만 원대).</td>
+        </tr>
+        <tr>
+          <td><strong>적합한 짐</strong></td>
+          <td>변색/습기에 강한 가구, 이불, 플라스틱 용품 등.</td>
+          <td>고가 가전제품, 가죽 가구, 의류, 미술품 등 민감한 짐.</td>
+        </tr>
+        <tr>
+          <td><strong>장점</strong></td>
+          <td>저렴한 비용, 접근성 용이.</td>
+          <td>최적의 보관 환경, 짐 손상 위험 최소화.</td>
+        </tr>
+        <tr>
+          <td><strong>단점</strong></td>
+          <td>계절에 따른 짐 변질 우려 (여름철 습기, 겨울철 결로).</td>
+          <td>비용 부담이 큼.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- SECTION 4: 보관 비용 가이드 (Pricing) -->
+  <section id="cost-guide">
+    <span id="cost-guide-anchor" class="anchor"></span>
+    <h2>2026년 보관이사 비용 상세 가이드 및 절약 팁</h2>
+    <p>보관이사 비용은 일반 포장이사 비용 외에 짐 보관료가 추가됩니다. 보관 기간, 짐의 양, 보관 환경(컨테이너 vs. 창고)에 따라 비용이 달라지므로, 꼼꼼한 견적 비교가 필수입니다. 아래는 보관이사 비용의 주요 구성 요소입니다.</p>
+
+    <h3>1. 비용 산출 요소</h3>
+    <p><strong>짐의 양 (기준):</strong> 짐이 보관 창고의 몇 평을 차지하는지에 따라 비용이 달라집니다. 짐의 양이 많을수록 보관이사 비용이 증가합니다. (예: 원룸 짐 3평, 30평 아파트 짐 7~8평)</p>
+    <p><strong>보관 기간:</strong> 보관 기간이 길수록 월별 비용이 높아집니다. 장기보관이사 (3개월 이상) 시 할인이 적용되는 경우가 많습니다.</p>
+    <p><strong>이사 시기 (성수기 vs. 비수기):</strong> 일반 포장이사와 마찬가지로 이사 성수기(봄, 가을)에는 보관이사 비용이 비수기 대비 10~30% 상승할 수 있습니다. 2026년 이사 계획 시 참고하세요.</p>
+    <p><strong>추가 서비스:</strong> 사다리차 이용료, 청소 서비스, 보험료 등이 추가될 수 있습니다.</p>
+
+    <h3>2. 지역별 보관이사 비용 비교 (2026년 기준)</h3>
+    <p>보관이사 비용은 지역별 물가 및 업체 밀집도에 따라 다소 차이가 있습니다. 특히, <strong>서울 보관이사</strong>와 <strong>부산 보관이사</strong>는 수요가 많아 가격 변동성이 높습니다. 아래 표는 2026년 주요 도시별 평균 비용을 예측한 것입니다.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>지역명 (키워드)</th>
+          <th>원룸 (보관 기간 1개월)</th>
+          <th>30평대 아파트 (보관 기간 1개월)</th>
+          <th>비고</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>서울/경기/인천</strong></td>
+          <td>50만 원 ~ 70만 원</td>
+          <td>120만 원 ~ 180만 원</td>
+          <td>보관 수요 높음, 가격 변동 큼</td>
+        </tr>
+        <tr>
+          <td><strong>부산/울산/경남</strong></td>
+          <td>45만 원 ~ 65만 원</td>
+          <td>110만 원 ~ 170만 원</td>
+          <td><strong>부산 이사짐보관</strong> 수요 증가</td>
+        </tr>
+        <tr>
+          <td><strong>대구/경북</strong></td>
+          <td>40만 원 ~ 60만 원</td>
+          <td>100만 원 ~ 160만 원</td>
+          <td>상대적으로 안정적인 비용</td>
+        </tr>
+        <tr>
+          <td><strong>대전/충청</strong></td>
+          <td>40만 원 ~ 60만 원</td>
+          <td>100만 원 ~ 150만 원</td>
+          <td>합리적인 보관이사 비용 형성</td>
+        </tr>
+        <tr>
+          <td><strong>광주/전라</strong></td>
+          <td>40만 원 ~ 60만 원</td>
+          <td>100만 원 ~ 150만 원</td>
+          <td><strong>전국 보관이사</strong> 서비스 가능 지역</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>3. 비용 절약을 위한 팁</h3>
+    <ol>
+      <li><strong>짐 정리:</strong> 보관 기간이 길다면 불필요한 짐은 미리 처분하여 보관 용량을 줄이는 것이 중요합니다.</li>
+      <li><strong>보관 기간 협의:</strong> 장기보관이사 (3개월 이상) 시 업체와 협의하여 월별 보관료 할인을 요청하세요.</li>
+      <li><strong>비교 견적:</strong> 3~4곳 이상의 업체에서 견적을 받아보세요. 가격 편차가 클 수 있습니다.</li>
+      <li><strong>이사 시기 조정:</strong> 성수기(3~5월)를 피해 짐을 맡기면 <strong>보관이사 비용</strong>을 절감할 수 있습니다.</li>
+    </ol>
+  </section>
+
+  <!-- SECTION 5: 필수 체크리스트 & FAQ -->
+  <section id="checklist-faq">
+    <span id="checklist-faq-anchor" class="anchor"></span>
+    <h2>이사짐 보관 전 필수 체크리스트 및 FAQ</h2>
+
+    <h3>이사짐 보관 전 체크리스트</h3>
+    <ol>
+      <li><strong>귀중품 별도 보관:</strong> 현금, 통장, 인감, 보석류 등 귀중품은 반드시 고객이 직접 운반하고 보관해야 합니다.</li>
+      <li><strong>가전제품 사전 조치:</strong> 냉장고, 김치냉장고 등은 전원을 끄고 내부 물기를 완전히 제거하여 곰팡이 발생을 예방합니다.</li>
+      <li><strong>보관 계약서 확인:</strong> 보관 기간, 보관료, 보관 환경, 보상 범위 등을 꼼꼼히 확인합니다.</li>
+      <li><strong>보험 가입 여부 확인:</strong> 이사 중 파손 및 보관 중 손상에 대한 보상 보험이 가입되어 있는지 확인합니다.</li>
+    </ol>
+
+    <h3>자주 묻는 질문 (FAQ)</h3>
+    <div class="faq-item">
+      <h3>Q1: 보관 기간 중 짐을 찾으러 갈 수 있나요?</h3>
+      <p>A1: 네, 가능합니다. 다만 대부분의 보관 시설은 출입 통제 및 보안 시스템이 갖춰져 있으므로, 방문 최소 1~2일 전 업체에 미리 연락하여 방문 일정을 조율해야 합니다.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Q2: 장기보관이사 시 짐이 손상되면 보상받을 수 있나요?</h3>
+      <p>A2: 계약서에 명시된 보상 범위에 따라 보상받을 수 있습니다. 보관 중 파손이나 분실에 대비하여 적절한 보상 기준(손해배상보험)을 갖춘 <strong>포장이사 전문업체</strong>를 선택하는 것이 중요합니다. 특히 습기에 민감한 가구나 가전제품의 경우, 항온/항습 시설이 있는 일반 창고 보관을 추천합니다.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Q3: 포장보관이사는 일반 이사와 비용 차이가 큰가요?</h3>
+      <p>A3: 네, 차이가 있습니다. 일반 포장이사는 운송료가 주된 비용이지만, 보관이사는 운송료(2회 발생)와 보관료(월별)가 추가됩니다. 따라서 일반 이사에 비해 1.5배~2배 정도의 비용이 발생합니다.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 6: 신뢰성 확보를 위한 외부 참고 자료 -->
+  <section id="external-references">
+    <span id="external-references-anchor" class="anchor"></span>
+    <h2>신뢰성 있는 이사 정보 및 소비자 보호 기관 안내</h2>
+    <p>포장보관이사는 장기간 짐을 맡겨야 하므로 신뢰할 수 있는 정보를 바탕으로 업체를 선택해야 합니다. 다음은 이사 관련 신뢰성 있는 정보 출처입니다.</p>
+    <ul>
+      <li><a href="https://www.consumer.go.kr/main/index.do" target="_blank">한국소비자원 (Consumer Protection Agency):</a> 이사 서비스 관련 소비자 분쟁 해결 기준 및 피해 구제 사례를 확인할 수 있습니다.</li>
+      <li><a href="https://www.molit.go.kr/portal/main.do" target="_blank">국토교통부 (Ministry of Land, Infrastructure and Transport):</a> 이사화물 운송 주선업 허가 업체 정보를 확인할 수 있습니다.</li>
+      <li><a href="https://namu.wiki/w/%EC%9D%B4%EC%82%AC" target="_blank">나무위키 - 이사 항목:</a> 이사의 종류, 절차, 주의사항 등 일반적인 정보를 참고할 수 있습니다.</li>
+      <li><a href="https://www.law.go.kr/" target="_blank">국가법령정보센터 (National Law Information Center):</a> 이사 관련 법규 및 운송 약관을 확인할 수 있습니다.</li>
+    </ul>
+  </section>
+
+  <!-- SECTION 7: 견적 상담 문의 (Quote Form) -->
+  <section id="quote-form">
+    <span id="quote-form-anchor" class="anchor"></span>
+    <h2>포장보관이사 실시간 견적 문의</h2>
+    <p>아래 양식에 정보를 남겨주시면, 고객님의 상황에 맞는 정확한 <strong>보관이사 비용</strong> 견적을 산출하여 연락드리겠습니다. <strong>장기보관이사</strong> 문의도 환영합니다.</p>
+
+    <form action="/submit" method="POST" style="max-width:700px; margin:auto;">
+      <h3>1. 기본 정보 입력</h3>
+      <label for="name">이름<span style="color:red;">*</span></label>
+      <input type="text" id="name" name="name" required placeholder="예: 홍길동" />
+
+      <label for="phone">연락처<span style="color:red;">*</span></label>
+      <input type="tel" id="phone" name="phone" required placeholder="010-1234-5678" pattern="[0-9\-]+" />
+
+      <label for="email">이메일 주소</label>
+      <input type="text" id="email" name="email" placeholder="예: example@email.com" />
+
+      <h3>2. 이사/보관 상세 정보</h3>
+      <label for="current_address">출발지 주소 (이사 나가는 곳)<span style="color:red;">*</span></label>
+      <input type="text" id="current_address" name="current_address" required placeholder="예: 서울시 강남구 삼성동" />
+
+      <label for="move_type">이사/보관 유형<span style="color:red;">*</span></label>
+      <select id="move_type" name="move_type" required>
+        <option value="">선택하세요</option>
+        <option value="원룸">원룸 보관이사</option>
+        <option value="투룸">투룸 보관이사</option>
+        <option value="아파트">아파트 보관이사 (30평대 이상)</option>
+        <option value="빌라">빌라 보관이사</option>
+        <option value="사무실">사무실/기업 보관이사</option>
+        <option value="기타">기타 (특수 짐 보관)</option>
+      </select>
+
+      <label for="storage_period">보관 희망 기간 (예상)<span style="color:red;">*</span></label>
+      <select id="storage_period" name="storage_period" required>
+        <option value="">선택하세요</option>
+        <option value="1주일 미만">1주일 미만</option>
+        <option value="1개월 미만">1개월 미만</option>
+        <option value="1~3개월">1~3개월 (단기 보관이사)</option>
+        <option value="3~6개월">3~6개월 (중기 보관이사)</option>
+        <option value="6개월 이상">6개월 이상 (장기 보관이사)</option>
+      </select>
+
+      <label for="move_date">이사 희망 날짜</label>
+      <input type="text" id="move_date" name="move_date" placeholder="예: 2026년 5월 10일 (정확한 날짜가 아니어도 됩니다)" />
+
+      <label for="message">추가 요청 사항 및 특이사항</label>
+      <textarea id="message" name="message" rows="4" placeholder="예: 피아노/대형 가전 포함, 보관 환경(컨테이너/창고) 문의"></textarea>
+
+      <div class="btn-cta-group">
+        <button type="submit" class="btn-cta">견적 문의 보내기</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- SECTION 8: 업체 추천 -->
+  <section id="partner-recommendation">
+    <span id="partner-recommendation-anchor" class="anchor"></span>
+    <h2>엄선된 포장보관이사 파트너 추천</h2>
+    <p>포장보관이사는 일반 이사와 달리 짐 보관의 신뢰성이 핵심입니다. 보관 환경, 보험 가입, 사후 관리를 철저히 점검한 엄선된 파트너를 추천합니다. (2026년 기준)</p>
+    <ol>
+      <li><strong>A사:</strong> 장기보관이사 전문, 항온항습 창고 운영, 24시간 CCTV 보안, <strong>서울/경기/인천</strong> 지역 특화.</li>
+      <li><strong>B사:</strong> 짐 보관 전문 컨테이너 시설, 저렴한 <strong>보관이사 비용</strong>으로 가성비 우수, <strong>부산/대구</strong> 지역 특화.</li>
+      <li><strong>C사:</strong> 이삿짐 보관부터 인테리어 공사 후 청소 서비스까지 원스톱 제공, 전국 지점 운영.</li>
+      <li><strong>D사:</strong> 중소형 짐 <strong>이사짐보관</strong> 전문, 반포장이사 및 보관 서비스 특화, <strong>대전/광주</strong> 지역 특화.</li>
+    </ol>
+  </section>
+
+  <footer>
+    <p>© 2026 포장보관이사 전문 서비스. All rights reserved.</p>
+    <p>연락처: <a href="tel:16601234">1660-1234</a> | 이메일: <a href="mailto:help@domain.com">help@domain.com</a></p>
+    <p>사업자 정보: [주소: 전국 주요 거점] | [사업자 등록번호: 123-45-67890]</p>
+  </footer>
+
+
+  
